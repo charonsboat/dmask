@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/drmyersii-tinker/dns-test/issues"
   },
-  "homepage": "https://github.com/drmyersii-tinker/dns-test#readme"
+  "homepage": "https://github.com/drmyersii-tinker/dns-test#readme",
+  "dependencies": {
+    "http-proxy": "^1.13.2"
+  }
 }
