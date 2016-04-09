@@ -38,7 +38,7 @@ Vagrant.configure(2) do |config|
     config.vm.box = "ubuntu/trusty64"
 
     # set up network configuration
-    config.vm.network :forwarded_port, guest: 80,  host: 10080
+    config.vm.network :forwarded_port, guest: 8000,  host: 10080
     config.vm.network :forwarded_port, guest: 443, host: 10443
 
     ####
@@ -87,7 +87,7 @@ Vagrant.configure(2) do |config|
         args_mysql_db_host = "localhost"
 
         # call mysql provisioner
-        config.vm.provision :shell, privileged: false, path: "#{scripts_url}/mysql", args: [ args_mysql_db_name, args_mysql_db_user, args_mysql_db_password, args_mysql_db_host ]
+        # config.vm.provision :shell, privileged: false, path: "#{scripts_url}/mysql", args: [ args_mysql_db_name, args_mysql_db_user, args_mysql_db_password, args_mysql_db_host ]
 
 
         ####
@@ -115,7 +115,7 @@ Vagrant.configure(2) do |config|
         args_php_owner = "vagrant"
 
         # call php provisioner
-        config.vm.provision :shell, privileged: false, path: "#{scripts_url}/php", args: [ args_php_version, args_php_package_list, args_php_user, args_php_group, args_php_owner ]
+        # config.vm.provision :shell, privileged: false, path: "#{scripts_url}/php", args: [ args_php_version, args_php_package_list, args_php_user, args_php_group, args_php_owner ]
 
 
         ####
@@ -126,7 +126,7 @@ Vagrant.configure(2) do |config|
         args_composer_install_dir = "/vagrant"
 
         # call composer provisioner
-        config.vm.provision :shell, privileged: false, path: "#{scripts_url}/composer", args: [ args_composer_install_dir ]
+        # config.vm.provision :shell, privileged: false, path: "#{scripts_url}/composer", args: [ args_composer_install_dir ]
 
 
         ####
@@ -149,7 +149,7 @@ Vagrant.configure(2) do |config|
         args_nginx_group = "vagrant"
 
         # call nginx provisioner
-        config.vm.provision :shell, privileged: false, path: "#{scripts_url}/nginx", args: [ args_nginx_document_root, args_nginx_hostname, args_nginx_ip_address, args_nginx_user, args_nginx_group ]
+        # config.vm.provision :shell, privileged: false, path: "#{scripts_url}/nginx", args: [ args_nginx_document_root, args_nginx_hostname, args_nginx_ip_address, args_nginx_user, args_nginx_group ]
 
 
         ####
@@ -163,7 +163,7 @@ Vagrant.configure(2) do |config|
         args_node_packages = "npm pm2 gulp"
 
         # call node provisioner
-        # config.vm.provision :shell, privileged: false, path: "#{scripts_url}/node", args: [ args_node_version, args_node_packages ]
+        config.vm.provision :shell, privileged: false, path: "#{scripts_url}/node", args: [ args_node_version, args_node_packages ]
 
 
         ####
