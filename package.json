@@ -1,0 +1,23 @@
+{
+  "name": "dns-proxy",
+  "version": "0.0.0",
+  "description": "A simple application that allows you to test how a server responds to a specific domain/IP combination before updating the actual DNS.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drmyersii-tinker/dns-test.git"
+  },
+  "keywords": [
+    "DNS",
+    "Proxy"
+  ],
+  "author": "David R. Myers II <davidrmyersii@gmail.com> (https://github.com/drmyersii)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/drmyersii-tinker/dns-test/issues"
+  },
+  "homepage": "https://github.com/drmyersii-tinker/dns-test#readme"
+}
