@@ -13,4 +13,8 @@ var server = http.createServer(function (req, res)
 
 });
 
+// output server port to the console
+console.log(`Starting server on port ${process.env.PORT}.`);
+
+// start server
 server.listen(process.env.PORT);
