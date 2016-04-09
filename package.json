@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/drmyersii-tinker/dns-test#readme",
   "dependencies": {
+    "dotenv": "^2.0.0",
     "http-proxy": "^1.13.2"
   }
 }
