@@ -5,7 +5,7 @@ var dotenv = require('dotenv');
 // require other modules
 var http      = require('http');
 var httpProxy = require('http-proxy');
-var fs        = require('fs');
+var fs        = require('fs-extra');
 
 // App Configuration
 var server = http.createServer(function (req, res)
@@ -26,16 +26,28 @@ var server = http.createServer(function (req, res)
 
 
         var subdomain = domainParts[0];
+        var filePath  = path.resolve(__dirname, subdomain + '.json');
 
-
-
-        // create proxy
-        var proxy = httpProxy.createProxyServer({});
-
-        proxy.on('proxyReq', function (proxyReq, req, res, options)
+        var onJsonRead = function (err, info)
         {
+            if (err)
+            {
+                return console.error(err);
+            }
             
-        });
+            var ip     = info.ip;
+            var domain = info.domain;
+
+            // create proxy
+            var proxy = httpProxy.createProxyServer({});
+
+            proxy.on('proxyReq', function (proxyReq, req, res, options)
+            {
+
+            });
+        };
+
+        fs.readJson(filePath, onJsonRead);
     }
 });
 
