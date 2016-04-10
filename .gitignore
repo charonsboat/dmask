@@ -1,3 +1,8 @@
+# App
+
+/storage/*
+
+
 # Node
 
 /node_modules
@@ -7,3 +12,8 @@
 # Vagrant
 
 /.vagrant
+
+
+# Files to NOT Ignore
+
+!.gitkeep
