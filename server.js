@@ -10,7 +10,33 @@ var fs        = require('fs');
 // App Configuration
 var server = http.createServer(function (req, res)
 {
+    var domainParts = req.headers.host.split('.');
 
+    if (domainParts[0] === process.env.DOMAIN)
+    {
+        ////
+        // main app
+        ////
+    }
+    else
+    {
+        ////
+        // Proxy
+        ////
+
+
+        var subdomain = domainParts[0];
+
+
+
+        // create proxy
+        var proxy = httpProxy.createProxyServer({});
+
+        proxy.on('proxyReq', function (proxyReq, req, res, options)
+        {
+            
+        });
+    }
 });
 
 // output server port to the console
