@@ -23,6 +23,7 @@
   "homepage": "https://github.com/drmyersii-tinker/dns-test#readme",
   "dependencies": {
     "dotenv": "^2.0.0",
+    "fs-extra": "^0.26.7",
     "http-proxy": "^1.13.2"
   }
 }
