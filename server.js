@@ -54,7 +54,7 @@ var server = http.createServer(function (req, res)
                     fs.writeJsonSync(filePath, info);
 
                     // build the redirect location string
-                    var redirectLocation = process.env.PROXY_PROTOCOL + '://' + slug + '.' + process.env.PROXY_DOMAIN;
+                    var redirectLocation = process.env.PROXY_PROTOCOL + '://' + slug + '.' + process.env.PROXY_DOMAIN + ':' + process.env.PROXY_PORT;
 
                     res.writeHead(302, {
                         Location: redirectLocation
