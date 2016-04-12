@@ -5,6 +5,7 @@ var dotenv = require('dotenv');
 // require other modules
 var http      = require('http');
 var httpProxy = require('http-proxy');
+var url       = require('url');
 var fs        = require('fs-extra');
 var path      = require('path');
 
@@ -18,6 +19,66 @@ var server = http.createServer(function (req, res)
         ////
         // main app
         ////
+
+
+        var genSlug = function ()
+        {
+            var slug = (new Date() * Math.random()).toString(36).substring(0, 6);
+
+            if (!(/^[a-z0-9]+$/i.test(slug)))
+            {
+                slug = genSlug();
+            }
+
+            return slug;
+        };
+
+        var genFile = function (info)
+        {
+            var slug     = genSlug();
+            var filePath = path.resolve(path.resolve(__dirname, 'storage'), slug + '.json');
+
+            fs.ensureFile(filePath, function (err)
+            {
+                if (err)
+                {
+                    // we encountered an error!
+                    return console.error(err);
+                }
+
+                var file = fs.readJsonSync(filePath, { throws: false });
+
+                if (null === file)
+                {
+                    // write the file!
+                    fs.writeJsonSync(filePath, info);
+                }
+                else
+                {
+                    // slug taken; try again!
+                    genFile(info);
+                }
+            });
+        };
+
+        var reqParams = url.parse(req.url, true).query;
+
+        var info = {
+            ip:     reqParams.ip,
+            domain: reqParams.domain,
+        };
+
+        if ('undefined' === typeof info.ip || 'undefined' === typeof info.domain)
+        {
+            // throw error!
+            console.error('Missing IP or Domain...');
+        }
+        else
+        {
+            genFile(info);
+        }
+
+        res.end();
     }
     else
     {
