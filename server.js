@@ -85,8 +85,6 @@ var server = http.createServer(function (req, res)
         {
             genFile(info);
         }
-
-        // res.end();
     }
     else
     {
