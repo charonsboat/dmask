@@ -6,6 +6,7 @@ var dotenv = require('dotenv');
 var http      = require('http');
 var httpProxy = require('http-proxy');
 var fs        = require('fs-extra');
+var path      = require('path');
 
 // App Configuration
 var server = http.createServer(function (req, res)
@@ -26,24 +27,27 @@ var server = http.createServer(function (req, res)
 
 
         var subdomain = domainParts[0];
-        var filePath  = path.resolve(__dirname, subdomain + '.json');
+        var filePath  = path.resolve(path.resolve(__dirname, 'storage'), subdomain + '.json');
 
         var onJsonRead = function (err, info)
         {
             if (err)
             {
+                // the file doesn't exist
                 return console.error(err);
             }
-            
-            var ip     = info.ip;
-            var domain = info.domain;
 
             // create proxy
             var proxy = httpProxy.createProxyServer({});
 
-            proxy.on('proxyReq', function (proxyReq, req, res, options)
-            {
-
+            // enable proxy
+            proxy.web(req, res, {
+                target: {
+                    host: info.ip
+                },
+                headers: {
+                    host: info.domain
+                }
             });
         };
 
