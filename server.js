@@ -52,6 +52,12 @@ var server = http.createServer(function (req, res)
                 {
                     // write the file!
                     fs.writeJsonSync(filePath, info);
+
+                    res.writeHead(302, {
+                        Location: 'http://' + slug + '.' + process.env.PROXY_DOMAIN
+                    });
+
+                    res.end();
                 }
                 else
                 {
@@ -72,13 +78,15 @@ var server = http.createServer(function (req, res)
         {
             // throw error!
             console.error('Missing IP or Domain...');
+
+            res.end();
         }
         else
         {
             genFile(info);
         }
 
-        res.end();
+        // res.end();
     }
     else
     {
