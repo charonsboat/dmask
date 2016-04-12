@@ -15,6 +15,11 @@
 /.vagrant
 
 
+# Mac OS
+
+.DS_Store
+
+
 # Files to NOT Ignore
 
 !.gitkeep
