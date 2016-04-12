@@ -14,7 +14,7 @@ var server = http.createServer(function (req, res)
 {
     var domainParts = req.headers.host.split('.');
 
-    if (domainParts[0] === process.env.DOMAIN)
+    if (domainParts[0] === process.env.APP_DOMAIN)
     {
         ////
         // main app
@@ -126,7 +126,7 @@ var server = http.createServer(function (req, res)
 });
 
 // output server port to the console
-console.log(`Starting server on port ${process.env.PORT}.`);
+console.log(`Starting server on port ${process.env.APP_PORT}.`);
 
 // start server
-server.listen(process.env.PORT);
+server.listen(process.env.APP_PORT);
